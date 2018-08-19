@@ -22,3 +22,7 @@ EXPOSE 3306/tcp
 ENTRYPOINT ["/sbin/entrypoint.sh"]
 
 CMD ["/usr/bin/mysqld_safe"]
+
+HEALTHCHECK --interval=5s --timeout=3s \
+  CMD mysqladmin ping
+

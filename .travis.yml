@@ -1,12 +1,15 @@
 language: python
 branches:
   only: master
-sudo: false
+sudo: required
+services:
+- docker
 before_install:
 - export AUTHOR=`git --no-pager show -s --format='%an <%ae>'`
 - export DATE=`TZ=America/New_York date "+%m-%d-%y-%H%M"`
 - export DOCKER_IMAGE="monospacesoftware/java-maven-mysql:3-10-5.7"
 script:
+- docker login
 - docker build -t $DOCKER_IMAGE .
 - docker push $DOCKER_IMAGE
 notifications:

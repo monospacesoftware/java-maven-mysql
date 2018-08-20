@@ -9,7 +9,7 @@ before_install:
 - export DATE=`TZ=America/New_York date "+%m-%d-%y-%H%M"`
 - export DOCKER_IMAGE="monospacesoftware/java-maven-mysql:3-10-5.7"
 script:
-- docker login
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 - docker build -t $DOCKER_IMAGE .
 - docker push $DOCKER_IMAGE
 notifications:
